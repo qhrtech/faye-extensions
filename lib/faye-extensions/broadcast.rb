@@ -2,9 +2,9 @@ require 'net/http'
 
 module FayeExtensions
 
-  SERVER_ID = 'SSE'
-
   class Broadcast
+
+    SERVER_ID = 'SSE'
 
     attr_reader :channel
 

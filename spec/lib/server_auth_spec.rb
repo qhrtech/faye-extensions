@@ -1,5 +1,5 @@
 require 'rspec'
-require 'faye-extensions/channel_auth'
+require 'faye-extensions/server_auth'
 
 module FayeExtensions ; class AuthToken ; end ; end
 
@@ -10,10 +10,10 @@ class CbStub
   end
 end
 
-describe FayeExtensions::ChannelAuth do
+describe FayeExtensions::ServerAuth do
 
   let(:callback) { CbStub.new }
-  let(:auth)     { FayeExtensions::ChannelAuth.new }
+  let(:auth)     { FayeExtensions::ServerAuth.new }
   let(:message) do
     {
       "channel"      => "/meta/subscribe",
