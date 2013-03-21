@@ -1,6 +1,6 @@
-# Faye::Extensions
+# FayeExtensions
 
-TODO: Write a gem description
+Faye Ruby extensions for Medeo's real-time client.
 
 ## Installation
 
@@ -12,13 +12,13 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or build it yourself:
 
-    $ gem install faye-extensions
+    $ gem build faye-extensions.gemspec
 
-## Usage
+And install it as:
 
-TODO: Write usage instructions here
+    $ gem install faye-extensions-x.x.x.gem
 
 ## Contributing
 
@@ -27,3 +27,7 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+For convenience, you can also add your own ```.rvmrc``` file with the following content:
+
+    rvm use 1.9.3@faye-extensions --create
