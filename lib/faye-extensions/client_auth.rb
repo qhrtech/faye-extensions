@@ -5,9 +5,6 @@ module FayeExtensions
 
   class ClientAuth
 
-    TOKEN_KEY = 'auth_token'
-    ERROR_MESSAGE = '403::Authentication required'
-
     def incoming(message, callback)
       # Maybe see if it's a self-published message
 

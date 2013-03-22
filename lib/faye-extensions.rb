@@ -1,4 +1,5 @@
 require "faye-extensions/version"
+require "faye-extensions/constants"
 require "faye-extensions/auth_token"
 require "faye-extensions/server_auth"
 require "faye-extensions/client_auth"

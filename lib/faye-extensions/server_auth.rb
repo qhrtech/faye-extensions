@@ -5,9 +5,6 @@ module FayeExtensions
 
   class ServerAuth
 
-    TOKEN_KEY = 'auth_token'
-    ERROR_MESSAGE = '403::Authentication required'
-
     def incoming(message, callback)
 
       if message['channel'] == '/meta/subscribe'

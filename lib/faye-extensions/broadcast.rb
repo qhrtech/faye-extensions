@@ -4,8 +4,6 @@ module FayeExtensions
 
   class Broadcast
 
-    SERVER_ID = 'SSE'
-
     attr_reader :channel
 
     def initialize(channel)
