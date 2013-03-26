@@ -5,6 +5,7 @@ require "faye-extensions/server_auth"
 require "faye-extensions/client_auth"
 require "faye-extensions/config"
 require "faye-extensions/broadcast"
+require "faye-extensions/logging"
 
 module FayeExtensions
 
