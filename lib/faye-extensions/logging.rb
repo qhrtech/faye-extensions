@@ -1,5 +1,6 @@
-require 'syslog/logger'
-require 'airbrake'
+require "faye"
+require "syslog/logger"
+require "airbrake"
 
 module FayeExtensions
 
