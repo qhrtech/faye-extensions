@@ -22,7 +22,7 @@ module FayeExtensions
       @targets[:airbrake] = lambda { |l, m| Airbrake.notify Exception.new m }
 
       # SyslogLogger
-      logger = Syslog::Logger.new "medeo-faye-clients"
+      logger = Syslog::Logger.new "faye-extensions"
       @targets[:syslog] = lambda { |l, m| logger.send l, m }
 
     end
