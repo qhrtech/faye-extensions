@@ -36,7 +36,7 @@ module FayeExtensions
   end
   
   def logger
-    @logger ||= Logger.new config
+    @logger ||= FayeExtensions::Logger.new config
   end
 
 end

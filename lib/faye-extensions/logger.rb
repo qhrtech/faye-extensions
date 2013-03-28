@@ -10,18 +10,26 @@ module FayeExtensions
     LEVELS = [:debug, :info, :warn, :error]
 
     def initialize(config)
-
-      level = config.log_level
+      Faye::Logging.log_level = config.log_level
       targets = config.log_targets & TARGETS
 
       @targets = Array.new
       return if targets.empty?
 
-      @targets << Logger.new STDOUT if targets.include? :stdout
-      @targets << Syslog::Logger.new "faye-extensions" if targets.include? :syslog
+      @targets << ::Logger.new(STDOUT) if targets.include? :stdout
+      @targets << Syslog::Logger.new("faye-extensions") if targets.include? :syslog
 
-      Faye::Logging.log_level = level
-      Faye.logger = lambda { |msg| log level, msg }
+      Faye.logger = lambda do |msg|
+        # Parse faye log message
+        match = msg.match /\[(\w*)\]\s(.+)/
+
+        # Extract log level and message
+        level = match[1].downcase.to_sym
+        message = match[2]
+
+        # Log with parsed level and message content
+        log level, message
+      end
     end
 
     def log(level, msg)
