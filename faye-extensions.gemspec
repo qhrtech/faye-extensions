@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'debugger'
   gem.add_dependency 'faye'
   gem.add_dependency 'eventmachine'
+  gem.add_dependency 'SyslogLogger'
 end
