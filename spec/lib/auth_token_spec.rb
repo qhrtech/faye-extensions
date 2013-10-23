@@ -53,9 +53,10 @@ describe FayeExtensions::AuthToken do
       token.as_json[:token].should == 'banana'
     end
 
-    it 'returns a timestamp' do
-      Time.stub_chain(:now, :utc).and_return('foo')
-      token.as_json[:timestamp].should == 'foo'
+    it 'returns a timestamp at which the token expires' do
+      time = Time.now.utc
+      Time.stub_chain(:now, :utc).and_return(time)
+      token.as_json[:timestamp].should == (time + FayeExtensions.token_life).iso8601
     end
 
   end

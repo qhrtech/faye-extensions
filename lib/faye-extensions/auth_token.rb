@@ -27,7 +27,7 @@ module FayeExtensions
     end
 
     def as_json(options={})
-      self.timestamp = now.to_s
+      self.timestamp = expires_at_stamp
       { :user_id   => user_id,
         :token     => create_digest,
         :timestamp => timestamp }
@@ -50,12 +50,12 @@ module FayeExtensions
         OpenSSL::Digest.new(FayeExtensions.hash_algorithm)
       end
 
-      def now
-        Time.now.utc
+      def expires_at_stamp
+        (Time.now.utc + FayeExtensions.token_life).iso8601
       end
 
       def time_valid?
-        self.timestamp && Time.parse(self.timestamp) > (now - FayeExtensions.token_life)
+        self.timestamp && Time.iso8601(self.timestamp) > Time.now.utc
       end
 
   end
