@@ -46,7 +46,7 @@ describe FayeExtensions::AuthToken do
     end
 
     it 'retuns a HMAC token' do
-      digest = stub('digest')
+      digest = double('digest')
       digest.should_receive(:<<)
       digest.should_receive(:hexdigest).and_return('banana')
       OpenSSL::HMAC.stub(:new => digest)

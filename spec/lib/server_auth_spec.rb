@@ -44,14 +44,14 @@ describe FayeExtensions::ServerAuth do
     end
 
     it 'adds errors to subscriptions that have invalid tokens' do
-      token = stub('token', :authorized? => false)
+      token = double('token', :authorized? => false)
       FayeExtensions::AuthToken.stub(:from_json => token)
       auth.incoming(message, callback)
       callback.message['error'].should_not be_nil
     end
 
     it 'passes messages through that include valid tokens' do
-      token = stub('token', :authorized? => true)
+      token = double('token', :authorized? => true)
       FayeExtensions::AuthToken.stub(:from_json => token)
       auth.incoming(message, callback)
       callback.message['error'].should be_nil
@@ -71,7 +71,7 @@ describe FayeExtensions::ServerAuth do
           }
         }
       }
-      token = stub('token')
+      token = double('token')
       FayeExtensions::AuthToken.stub(:from_json => token)
       token.should_receive(:authorized?).with('/cases/4').and_return(true)
       auth.incoming(message, callback)
