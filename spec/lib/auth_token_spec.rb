@@ -46,16 +46,17 @@ describe FayeExtensions::AuthToken do
     end
 
     it 'retuns a HMAC token' do
-      digest = stub('digest')
+      digest = double('digest')
       digest.should_receive(:<<)
       digest.should_receive(:hexdigest).and_return('banana')
       OpenSSL::HMAC.stub(:new => digest)
       token.as_json[:token].should == 'banana'
     end
 
-    it 'returns a timestamp' do
-      Time.stub_chain(:now, :utc).and_return('foo')
-      token.as_json[:timestamp].should == 'foo'
+    it 'returns a timestamp at which the token expires' do
+      time = Time.now.utc
+      Time.stub_chain(:now, :utc).and_return(time)
+      token.as_json[:timestamp].should == (time + FayeExtensions.token_life).iso8601
     end
 
   end
