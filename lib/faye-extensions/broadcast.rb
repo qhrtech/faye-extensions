@@ -32,10 +32,14 @@ module FayeExtensions
       def http
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == 'https'
-          http.ca_file = Rails.root.join('lib/certs/ca-bundle.crt').to_s
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.use_ssl = true
+          http.cert_store = OpenSSL::X509::Store.new
+          http.cert_store.set_default_paths
+          http.cert_store.add_file(Rails.root.join('lib/certs/ca-bundle.crt').to_s)
+
           http.set_debug_output(STDOUT)
+
         end
         http
       end
