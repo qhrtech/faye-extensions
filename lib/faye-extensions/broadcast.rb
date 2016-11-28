@@ -35,6 +35,7 @@ module FayeExtensions
           http.ca_file = Rails.root.join('lib/certs/ca-bundle.crt')
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.use_ssl = true
+          http.set_debug_output(STDOUT)
         end
         http
       end
