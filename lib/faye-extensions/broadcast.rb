@@ -37,9 +37,6 @@ module FayeExtensions
           http.cert_store = OpenSSL::X509::Store.new
           http.cert_store.set_default_paths
           http.cert_store.add_file(Rails.root.join('lib/certs/ca-bundle.crt').to_s)
-
-          http.set_debug_output(STDOUT)
-
         end
         http
       end
