@@ -32,7 +32,7 @@ module FayeExtensions
       def http
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == 'https'
-          http.ca_file = Rails.root.join('lib/certs/ca-bundle.crt')
+          http.ca_path = Rails.root.join('lib', 'certs', 'ca-bundle.crt').to_s
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.use_ssl = true
           http.set_debug_output(STDOUT)
