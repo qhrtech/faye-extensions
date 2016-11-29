@@ -32,12 +32,11 @@ module FayeExtensions
       def http
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == 'https'
-          # TODO could not verify the cer for some reason
-          # http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          # http.ca_path = Rails.root.join('lib', 'certs', 'ca-bundle.crt').to_s
-          # http.verify_depth = 5
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.cert_store = OpenSSL::X509::Store.new
+          http.cert_store.set_default_paths
+          http.cert_store.add_file(Rails.root.join('lib/certs/ca-bundle.crt').to_s)
         end
         http
       end
