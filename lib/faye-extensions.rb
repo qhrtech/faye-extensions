@@ -5,13 +5,14 @@ require "faye-extensions/server_auth"
 require "faye-extensions/client_auth"
 require "faye-extensions/config"
 require "faye-extensions/broadcast"
+require "faye-extensions/logger"
 
 module FayeExtensions
 
   extend self
 
   def config
-    @config ||= Config.new('sha256', 3600, nil, 'http://localhost:9292/faye')
+    @config ||= Config.new('sha256', 3600, nil, 'http://localhost:9292/faye', :debug, [])
   end
 
   def setup
@@ -32,6 +33,10 @@ module FayeExtensions
 
   def broadcast_url
     config.broadcast_url
+  end
+  
+  def logger
+    @logger ||= FayeExtensions::Logger.new config
   end
 
 end
