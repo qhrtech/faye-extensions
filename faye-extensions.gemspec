@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["matthew@medeo.ca"]
   gem.description   = %q{Faye Ruby extensions for Medeo's real-time app.'}
   gem.summary       = %q{Faye Ruby extensions for Medeo's real-time app.}
-  gem.homepage      = "https://github.com/medeo/faye-extensions"
+  gem.homepage      = "https://github.com/qhrtech/faye-extensions"
 
   gem.files         = `git ls-files`.split($/)
   # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
